@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- PIPE version="1.0" -->
+<!-- $Revision: 6 $ -->
+<!-- GME JSP -->
+<schema xmlns:pd="urn:XML-PIPE"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="urn:XML-PIPE"
+        elementFormDefault="qualified">
+	<include schemaLocation="SimpleTypesv1_0.xsd"/>
+	<simpleType name="creationDateTimeType">
+		<restriction base="integer">
+			<minInclusive value="19000000000000"/>
+			<maxInclusive value="21000000000000"/>
+		</restriction>
+	</simpleType>
+	<complexType name="tyReservedQuantity">
+		<simpleContent>
+			<extension base="pd:localeDecimal">
+				<attribute name="UnitOfMeasure"
+				           type="pd:unitOfMeasureBidType"
+				           use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Body -->
+	<element name="PIPEDocument">
+		<complexType>
+			<sequence>
+				<element ref="pd:TradingPartnerDirectory"/>
+				<element ref="pd:PIPTransaction"
+				         maxOccurs="unbounded"/>
+			</sequence>
+			<attribute name="ReferenceNumber"
+			           type="pd:lengthThirtyType"
+			           use="required"/>
+			<attribute name="CreationDate"
+			           type="pd:creationDateTimeType"
+			           use="required"/>
+			<attribute name="Version"
+			           type="string"
+			           use="required"/>
+		</complexType>
+	</element>
+	<element name="TradingPartnerDirectory">
+		<complexType>
+			<sequence>
+				<element ref="pd:Sender"/>
+				<element ref="pd:Recipient"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Sender">
+		<complexType>
+			<sequence>
+				<element ref="pd:TradingPartner"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Recipient">
+		<complexType>
+			<sequence>
+				<element ref="pd:TradingPartner"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="TradingPartner">
+		<complexType>
+			<sequence>
+				<element name="CompanyName"
+				         type="string"/>
+				<element name="CompanyIdentifier"
+				         type="string"/>
+			</sequence>
+			<attribute name="PartnerType"
+			           type="string"/>
+		</complexType>
+	</element>
+	<element name="PIPTransaction">
+		<complexType>
+			<sequence>
+				<element ref="pd:BidNotification"/>
+			</sequence>
+			<attribute name="ReferenceNumber"
+			           type="pd:lengthThirtyType"
+			           use="required"/>
+			<attribute name="OriginalReferenceNumber"
+			           type="pd:lengthThirtyType"
+			           use="optional"/>
+			<attribute name="InboundMessageCreationDate"
+			           type="pd:creationDateType"
+			           use="optional"/>
+			<attribute name="InboundMessageCreationTime"
+			           type="pd:creationTimeMillisecsType"
+			           use="optional"/>
+		</complexType>
+	</element>
+	<element name="BidNotification">
+		<complexType>
+			<choice>
+				<sequence>
+					<element name="Market"
+					         type="pd:marketType"/>
+					<element name="MarketParticipantNumber"
+					         type="pd:lengthThirtyType"
+					         minOccurs="0"/>
+					<element name="GMEReferenceNumber"
+					         type="pd:lengthThirtyType"/>
+					<element name="VerifiedSourceOffer"
+					         type="pd:lengthThirtyType"
+					         minOccurs="0"/>
+					<element name="ContractID"
+					         type="pd:lengthThirtyType"
+					         minOccurs="0"/>
+					<element name="Date"
+					         type="pd:dateType"/>
+					<element name="Hour"
+					         type="pd:hourIntervalType"/>
+					<element name="UnitReferenceNumber"
+					         type="pd:lengthSixtyType"/>
+					<element name="AwardedQuantity">
+						<complexType>
+							<simpleContent>
+								<extension base="pd:localeDecimal">
+									<attribute name="UnitOfMeasure"
+									           type="pd:unitOfMeasureBidType"
+									           use="required"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="AwardedPrice"
+					         type="pd:localeDecimal"/>
+					<element name="AwardedValue"
+					         type="pd:localeDecimal"/>
+					<element name="ReservedQuantity"
+					         type="pd:tyReservedQuantity"
+					         minOccurs="0"/>
+				</sequence>
+				<sequence>
+					<element name="RejectInformation">
+						<complexType>
+							<sequence>
+								<element name="Reason"
+								         type="string"/>
+								<element name="ReasonText"
+								         type="pd:lengthFiveHundredType"
+								         minOccurs="0"/>
+							</sequence>
+						</complexType>
+					</element>
+					<element name="Market"
+					         type="pd:marketType"/>
+					<element name="MarketParticipantNumber"
+					         type="pd:lengthThirtyType"
+					         minOccurs="0"/>
+					<element name="GMEReferenceNumber"
+					         type="pd:lengthThirtyType"/>
+					<element name="VerifiedSourceOffer"
+					         type="pd:lengthThirtyType"
+					         minOccurs="0"/>
+					<element name="ContractID"
+					         type="pd:lengthThirtyType"
+					         minOccurs="0"/>
+					<element name="Date"
+					         type="pd:dateType"/>
+					<element name="Hour"
+					         type="pd:hourIntervalType"/>
+					<element name="UnitReferenceNumber"
+					         type="pd:lengthSixtyType"/>
+					<element name="BidQuantity">
+						<complexType>
+							<simpleContent>
+								<extension base="pd:localeDecimal">
+									<attribute name="UnitOfMeasure"
+									           type="pd:unitOfMeasureBidType"
+									           use="required"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="ReservedQuantity"
+					         type="pd:tyReservedQuantity"
+					         minOccurs="0"/>
+					<element name="EnergyPrice"
+					         type="pd:localeDecimal"/>
+				</sequence>
+			</choice>
+			<attribute name="Status"
+			           type="pd:statusTransactionType"
+			           use="required"/>
+			<attribute name="Purpose"
+			           type="pd:purposeTradeType"
+			           use="required"/>
+			<attribute name="Scope"
+			           type="pd:scopeType"
+			           use="optional"/>
+			<attribute name="Quarter"
+			           type="pd:quarterType"
+			           use="optional"/>
+			<attribute name="BAType"
+			           type="pd:bAType"
+			           use="optional"/>
+			<attribute name="BalancedReferenceNumber"
+			           type="pd:lengthThirtyType"
+			           use="optional"/>
+			<attribute name="PredefinedOffer"
+			           type="pd:yesNoType"
+			           use="optional"/>
+			<attribute name="PartialAcceptedQuantityIndicator"
+			           type="pd:yesNoType"
+			           use="optional"/>
+		</complexType>
+	</element>
+</schema>

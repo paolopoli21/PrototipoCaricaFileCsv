@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<PIPEDocument  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<TradingPartnerDirectory>
+		<Sender>
+			<TradingPartner PartnerType='Distributor'>
+				<CompanyName>Primo operatore</CompanyName>
+				<CompanyIdentifier>PRIMOP</CompanyIdentifier>
+			</TradingPartner>
+		</Sender>
+		<Recipient>
+			<TradingPartner PartnerType='Distributor'>
+				<CompanyName>GME</CompanyName>
+				<CompanyIdentifier>IDGME</CompanyIdentifier>
+			</TradingPartner>
+		</Recipient>
+	</TradingPartnerDirectory>
+	<PIPTransaction>
+		<BidSubmittal Purpose='Buy'
+		              PredefinedOffer='No'
+		              ReplacementIndicator='Yes'>
+			<Market>MGP</Market>
+			<Date>20020320</Date>
+			<Hour>1</Hour>
+			<UnitReferenceNumber>UnC2</UnitReferenceNumber>
+			<BidQuantity UnitOfMeasure='MWh'>2,534</BidQuantity>
+			<EnergyPrice>53,4</EnergyPrice>
+		</BidSubmittal>
+	</PIPTransaction>
+	<PIPTransaction>
+		<BidSubmittal Purpose='Buy'
+		              PredefinedOffer='No'
+		              ReplacementIndicator='Yes'>
+			<Market>MGP</Market>
+			<Date>20020320</Date>
+			<Hour>24</Hour>
+			<UnitReferenceNumber>UnC2</UnitReferenceNumber>
+			<BidQuantity UnitOfMeasure='MWh'>2,44838</BidQuantity>
+			<EnergyPrice>44,84</EnergyPrice>
+		</BidSubmittal>
+	</PIPTransaction>
+</PIPEDocument>

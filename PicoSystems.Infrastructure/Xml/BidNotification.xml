@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PIPEDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TradingPartnerDirectory>
+    <Sender>
+      <TradingPartner PartnerType="Operator">
+        <CompanyName>Gestore Mercati Energetici SPA</CompanyName>
+        <CompanyIdentifier>IDGME</CompanyIdentifier>
+      </TradingPartner>
+    </Sender>
+    <Recipient>
+      <TradingPartner PartnerType="Operator">
+        <CompanyName>PICO SYSTEMS</CompanyName>
+        <CompanyIdentifier>199991</CompanyIdentifier>
+      </TradingPartner>
+    </Recipient>
+  </TradingPartnerDirectory>
+  <PIPTransaction ReferenceNumber="3349183302" InboundMessageCreationDate="20211230" InboundMessageCreationTime="124542564" OriginalReferenceNumber="995894623323613">
+    <BidNotification Status="Accept" Purpose="Buy" PartialAcceptedQuantityIndicator="No">
+      <Market>MGP</Market>
+      <GMEReferenceNumber>995894623323613</GMEReferenceNumber>
+      <Date>20211231</Date>
+      <Hour>1</Hour>
+      <UnitReferenceNumber>UC_DP9999_SICI</UnitReferenceNumber>
+      <AwardedQuantity UnitOfMeasure="MWh">0,018</AwardedQuantity>
+      <AwardedPrice>120,900000</AwardedPrice>
+      <AwardedValue>2,18</AwardedValue>
+    </BidNotification>
+  </PIPTransaction>
+</PIPEDocument>

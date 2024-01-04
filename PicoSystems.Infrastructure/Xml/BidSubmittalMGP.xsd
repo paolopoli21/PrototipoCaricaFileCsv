@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- UnitSchedule -->
+<!-- PIPE version="1.0" -->
+<!-- $Revision: 6 $ -->
+<!-- GME JSP -->
+<schema targetNamespace="urn:XML-PIPE"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:pd="urn:XML-PIPE"
+        elementFormDefault="qualified">
+	<include schemaLocation="SimpleTypesv1_0.xsd"/>
+	<simpleType name="creationDateTimeType">
+		<restriction base="integer">
+			<minInclusive value="19000000000000"/>
+			<maxInclusive value="21000000000000"/>
+		</restriction>
+	</simpleType>
+	<!-- Body -->
+	<element name="PIPEDocument">
+		<complexType>
+			<sequence>
+				<element ref="pd:TradingPartnerDirectory"/>
+				<element ref="pd:PIPTransaction"
+				         maxOccurs="unbounded"/>
+			</sequence>
+			<attribute name="ReferenceNumber"
+			           type="pd:lengthThirtyType"
+			           use="required"/>
+			<attribute name="CreationDate"
+			           type="pd:creationDateTimeType"
+			           use="required"/>
+			<attribute name="Version"
+			           type="string"
+			           use="required"/>
+		</complexType>
+	</element>
+	<element name="TradingPartnerDirectory">
+		<complexType>
+			<sequence>
+				<element ref="pd:Sender"/>
+				<element ref="pd:Recipient"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Sender">
+		<complexType>
+			<sequence>
+				<element ref="pd:TradingPartner"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Recipient">
+		<complexType>
+			<sequence>
+				<element ref="pd:TradingPartner"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="TradingPartner">
+		<complexType>
+			<sequence>
+				<element name="CompanyName"
+				         type="string"/>
+				<element name="CompanyIdentifier"
+				         type="string"/>
+			</sequence>
+			<attribute name="PartnerType"
+			           type="string"/>
+		</complexType>
+	</element>
+	<element name="PIPTransaction">
+		<complexType>
+			<sequence>
+				<element ref="pd:BidSubmittal"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="BidSubmittal">
+		<complexType>
+			<sequence>
+				<element name="Market"
+				         type="pd:marketMGPType"/>
+				<element name="Date"
+				         type="pd:dateType"/>
+				<element name="Hour"
+				         type="pd:hourIntervalType"/>
+				<element name="UnitReferenceNumber"
+				         type="pd:lengthSixtyType"/>
+				<element name="BidQuantity">
+					<complexType>
+						<simpleContent>
+							<extension base="pd:localeDecimal">
+								<attribute name="UnitOfMeasure"
+								           type="pd:unitOfMeasureMWhType"
+								           use="required"/>
+							</extension>
+						</simpleContent>
+					</complexType>
+				</element>
+				<element name="EnergyPrice"
+				         type="pd:localeDecimal"/>
+			</sequence>
+			<attribute name="MarketParticipantNumber"
+			           type="pd:lengthThirtyType"
+			           use="optional"/>
+			<attribute name="Purpose"
+			           type="pd:purposeTradeType"
+			           use="required"/>
+			<attribute name="PredefinedOffer"
+			           type="pd:yesNoType"
+			           use="required"/>
+			<attribute name="ReplacementIndicator"
+			           type="pd:yesNoType"
+			           use="required"/>
+		</complexType>
+	</element>
+</schema>
